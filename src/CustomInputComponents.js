@@ -16,18 +16,6 @@ export const CustomInputComponent = ({
         </div>
     );
 
-export const CustomDatePickerComponent = ({
-        field, // { name, value, onChange, onBlur }
-    form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-    ...props
-      }) => (
-        <div>
-            <DatePicker type="text" {...field} {...props} />
-            {touched[field.name] &&
-                errors[field.name] && <div className="error">{errors[field.name]}</div>}
-        </div>
-    );
-
     export const SignupSchema = Yup.object().shape({
         name: Yup.string()
           .min(2, 'Too Short!')
