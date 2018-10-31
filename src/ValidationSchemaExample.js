@@ -11,7 +11,8 @@ export const ValidationSchemaExample = () => (
     <Formik
       initialValues={{
         name: '',
-        dob: moment(),
+        "startDate": moment(),
+        "endDate": moment(),
       }}
       validationSchema={SignupSchema}
       onSubmit={values => {
@@ -23,8 +24,10 @@ export const ValidationSchemaExample = () => (
       {({ errors, touched }) => (
         <Form>
           <Field name="name" component={CustomInputComponent}  />
-          <Field name="dob" component={DatePickerWrapper} />
-         <ErrorMessage name="dob" />
+          <Field name="startDate" component={DatePickerWrapper} />
+          <ErrorMessage name="startDate" />
+          <Field name="endDate" component={DatePickerWrapper} />
+          <ErrorMessage name="endDate" />
           <button type="submit">Submit</button>
         </Form>
       )}
