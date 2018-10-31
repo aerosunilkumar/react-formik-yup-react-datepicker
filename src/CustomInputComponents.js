@@ -25,7 +25,7 @@ export const CustomInputComponent = ({
                 reference: ref.path
             },
             test: function(value) {
-                return value >= this.resolve(ref) 
+                return this.resolve(ref).toString()==="Invalid Date" || value >= this.resolve(ref) 
             }
         })
     };
@@ -39,10 +39,12 @@ export const CustomInputComponent = ({
                 reference: ref.path
             },
             test: function(value) {
-                return value <= this.resolve(ref) 
+                debugger;
+                return this.resolve(ref).toString()==="Invalid Date"||value <= this.resolve(ref) 
             }
         })
     };
+
     
     Yup.addMethod(Yup.date, 'lesserThan', lesserThan);
     Yup.addMethod(Yup.date, 'gratterThan', gratterThan);
@@ -56,10 +58,12 @@ export const CustomInputComponent = ({
         .default(new Date(moment()))
         .max(moment().add(6, 'years'), "Min Start Date enables upto Past 6 years")
         .required('End Date required')
-        .lesserThan(Yup.ref('endDate'),"Start Date should be lesser than or equals to End Date"),
+        .lesserThan(Yup.ref('endDate'),"Start Date should be lesser than or equals to End Date")
+        .typeError("Start Date Required"),
         "endDate": Yup.date()
         .default(new Date(moment()))
         .max(moment().add(6, 'years'), "Min End Date enables upto Past 6 years")
         .required('End Date required')
-        .gratterThan(Yup.ref('startDate'),"End Date Should be gratter than or equals to Start Date"),
+        .gratterThan(Yup.ref('startDate'),"End Date Should be gratter than or equals to Start Date")
+        .typeError("End Date Required")
       });
